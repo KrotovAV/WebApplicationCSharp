@@ -37,6 +37,7 @@ namespace WebApplication01S.Models
 
                 entity.HasKey(x => x.Id).HasName("ProductID");
                 entity.HasIndex(x => x.Name).IsUnique();
+
                 entity.HasOne(x => x.Group).WithMany(c => c.Products)
                 .HasForeignKey(x => x.Id)
                 .HasConstraintName("GroupName");
