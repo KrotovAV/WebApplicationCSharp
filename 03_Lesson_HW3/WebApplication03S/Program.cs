@@ -43,8 +43,8 @@ namespace WebApplication03HW3
             //builder.Services.AddSingleton<IGroupService, GroupService>();
             builder.Services.AddSingleton<IStoreService, StoreService>();
             //03S--------------
-
-            builder.Services.AddSingleton<IProductRepository,ProductRepository>();
+            builder.Services.AddSingleton<IProdInStoreRepository, ProdInStoreRepository>();
+            //builder.Services.AddSingleton<IProductRepository,ProductRepository>();
 
             var confBuilder = new ConfigurationBuilder();
             confBuilder.SetBasePath(Directory.GetCurrentDirectory());

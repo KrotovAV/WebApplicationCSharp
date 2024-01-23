@@ -9,16 +9,16 @@ using System.Reflection;
 
 namespace WebApplication03HW3.Repo
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository// : IProductRepository
     {
-        private readonly IMapper _mapper;
-        private readonly IMemoryCache _cache;
+        //private readonly IMapper _mapper;
+        //private readonly IMemoryCache _cache;
 
-        public ProductRepository(IMapper mapper, IMemoryCache cache)
-        {
-            _mapper = mapper;
-            _cache = cache;
-        }
+        //public ProductRepository(IMapper mapper, IMemoryCache cache)
+        //{
+        //    _mapper = mapper;
+        //    _cache = cache;
+        //}
 
         //public int AddGroup(GroupDto group)
         //{
@@ -117,51 +117,51 @@ namespace WebApplication03HW3.Repo
         //}
         //3-------------------
 
-        public IEnumerable<StoreDto> GetStores()
-        {
-            if (_cache.TryGetValue("stores", out List<StoreDto>? stores))
-            {
-                return stores;
-            }
+        //public IEnumerable<StoreDto> GetStores()
+        //{
+        //    if (_cache.TryGetValue("stores", out List<StoreDto>? stores))
+        //    {
+        //        return stores;
+        //    }
 
-            using (var context = new DBContext())
-            {
-                var storesList = context.Stores.Select(x => _mapper.Map<StoreDto>(x)).ToList();
-                _cache.Set("stores", storesList, TimeSpan.FromMinutes(30));
-                return storesList;
-            }
-        }
+        //    using (var context = new DBContext())
+        //    {
+        //        var storesList = context.Stores.Select(x => _mapper.Map<StoreDto>(x)).ToList();
+        //        _cache.Set("stores", storesList, TimeSpan.FromMinutes(30));
+        //        return storesList;
+        //    }
+        //}
 
-        public int AddStore(StoreDto store)
-        {
-            using (var context = new DBContext())
-            {
-                var entityStore = context.Stores.FirstOrDefault(x => x.Name.ToLower() == store.Name.ToLower());
-                if (entityStore == null)
-                {
+        //public int AddStore(StoreDto store)
+        //{
+        //    using (var context = new DBContext())
+        //    {
+        //        var entityStore = context.Stores.FirstOrDefault(x => x.Name.ToLower() == store.Name.ToLower());
+        //        if (entityStore == null)
+        //        {
                     
-                    entityStore = _mapper.Map<Models.Store>(store);
-                    context.Stores.Add(entityStore);
-                    context.SaveChanges();
-                    _cache.Remove("stores");
-                }
-                return entityStore.Id;
-            }
-        }
-        public bool DeleteStore(int id)
-        {
-            using (var context = new DBContext())
-            {
-                Store entityStore = context.Stores.FirstOrDefault(x => x.Id == id)!;
-                if (entityStore == null)
-                    return false;
+        //            entityStore = _mapper.Map<Models.Store>(store);
+        //            context.Stores.Add(entityStore);
+        //            context.SaveChanges();
+        //            _cache.Remove("stores");
+        //        }
+        //        return entityStore.Id;
+        //    }
+        //}
+        //public bool DeleteStore(int id)
+        //{
+        //    using (var context = new DBContext())
+        //    {
+        //        Store entityStore = context.Stores.FirstOrDefault(x => x.Id == id)!;
+        //        if (entityStore == null)
+        //            return false;
 
-                context.Stores.Remove(entityStore);
-                context.SaveChanges();
-                _cache.Remove("stores");
-                return true;
-            }
-        }
+        //        context.Stores.Remove(entityStore);
+        //        context.SaveChanges();
+        //        _cache.Remove("stores");
+        //        return true;
+        //    }
+        //}
 
         //3-------------------
         //public string GetProductsCSV()

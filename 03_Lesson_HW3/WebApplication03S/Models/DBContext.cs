@@ -8,7 +8,7 @@ namespace WebApplication03HW3.Models
 {
     public class DBContext : DbContext
     {
-        public DbSet<Store> Stores { get; set; }
+        public DbSet<ProdInStore> ProdInStores { get; set; }
 
         public DBContext()
         {
@@ -35,30 +35,26 @@ namespace WebApplication03HW3.Models
         {
 
 
-            modelBuilder.Entity<Store>(entity =>
+            modelBuilder.Entity<ProdInStore>(entity =>
             {
 
-                entity.ToTable("Stores");
+                entity.ToTable("ProdsInStores");
 
                 entity.HasKey(x => x.Id)
-                      .HasName("StoreID");
-                entity.HasIndex(x => x.Name)
-                      .IsUnique();
+                      .HasName("ID");
 
-                entity.Property(e => e.Name)
-                      .HasColumnName("StoreName");
-
-                entity.Property(e => e.Description)
-                      .HasColumnName("StoreDescription")
-                      .HasMaxLength(255)
+                entity.Property(e => e.IdStore)
+                      .HasColumnName("StoreID")
                       .IsRequired();
 
-                //entity.Property(e => e.Count)
-                //.HasColumnName("ProductCount");
+                entity.Property(e => e.IdProduct)
+                      .HasColumnName("ProductID")
+                      .IsRequired();
 
-                //entity.HasMany(x => x.Products)
-                //.WithMany(m => m.Stores)
-                //.UsingEntity(j => j.ToTable("StorageProduct"));
+                entity.Property(e => e.Count)
+                      .HasColumnName("ProductCount")
+                      .IsRequired();
+
             });
 
 
