@@ -12,6 +12,7 @@ namespace WebApplication03HW.Abstraction
         public IEnumerable<ProductDto> GetProducts();
         public int AddProduct(ProductDto product);
         public bool DeleteProduct(int id);
+        public bool CheckProduct(int id);
 
     }
     

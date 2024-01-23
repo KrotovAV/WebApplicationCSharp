@@ -6,5 +6,7 @@ namespace WebApplication03HW2.Abstraction
     {
         IEnumerable<StoreDto> GetStores();
         int AddStore(StoreDto storage);
+
+        
     }
 }

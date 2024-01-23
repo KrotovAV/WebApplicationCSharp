@@ -163,6 +163,17 @@ namespace WebApplication03HW2.Repo
             }
         }
 
+        public bool CheckStore(int id)
+        {
+            using (var context = new DBContext())
+            {
+                Store entityStore = context.Stores.FirstOrDefault(x => x.Id == id)!;
+                if (entityStore == null)
+                    return false;
+
+                return true;
+            }
+        }
         //3-------------------
         //public string GetProductsCSV()
         //{

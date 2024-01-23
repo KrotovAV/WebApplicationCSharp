@@ -93,5 +93,16 @@ namespace WebApplication03HW2.Controllers
                 return StatusCode(500);
             return Ok($"Delete ok! id = {id}");
         }
+
+
+        [HttpGet("check_stores")]
+        public IActionResult CheckStore(int id)
+        {
+
+            var res = _productRepository.CheckStore(id);
+            if (res == false)
+                return StatusCode(500);
+            return Ok($"id = {id} Exist ");
+        }
     }
 }

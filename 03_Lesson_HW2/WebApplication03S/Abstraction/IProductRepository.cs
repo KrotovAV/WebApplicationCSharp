@@ -16,6 +16,7 @@ namespace WebApplication03HW2.Abstraction
         public IEnumerable<StoreDto> GetStores();
         public int AddStore(StoreDto store);
         public bool DeleteStore(int id);
+        public bool CheckStore(int id);
 
         //public string GetProductsCSV();
         //public string GetСacheStatCSV();

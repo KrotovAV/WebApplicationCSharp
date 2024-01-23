@@ -115,5 +115,17 @@ namespace WebApplication03HW.Repo
                 return true;
             }
         }
+
+        public bool CheckProduct(int id)
+        {
+            using (var context = new DBContext())
+            {
+                Product entityStore = context.Products.FirstOrDefault(x => x.Id == id)!;
+                if (entityStore == null)
+                    return false;
+
+                return true;
+            }
+        }
     }
 }

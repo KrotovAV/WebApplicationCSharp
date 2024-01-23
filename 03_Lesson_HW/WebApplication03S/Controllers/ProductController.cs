@@ -46,6 +46,16 @@ namespace WebApplication03HW.Controllers
             return Ok($"Delete ok! id = {id}");
         }
 
+        [HttpGet("check_product")]
+        public IActionResult CheckStore(int id)
+        {
+
+            var res = _productRepository.CheckProduct(id);
+            if (res == false)
+                return StatusCode(500);
+            return Ok($"id = {id} Exist ");
+        }
+
         [HttpGet("get_groups")]
         public IActionResult GetGroups()
         {
