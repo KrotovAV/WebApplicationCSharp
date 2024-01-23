@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Caching.Memory;
 using System;
+using System.Text.RegularExpressions;
 using WebApplication03S.Abstraction;
 using WebApplication03S.Models;
 using WebApplication03S.Models.DTO;
@@ -19,31 +20,30 @@ namespace WebApplication03S.Services
             _mapper = mapper;
             _cache = cache;
         }
-        public int AddCategory(GroupDto category)
+        public int AddGroup(GroupDto group)
         {
             using (_context)
             {
-                var entity = _mapper.Map<Group>(category);
+                var entity = _mapper.Map<Models.Group>(group);
 
                 _context.Groups.Add(entity);
                 _context.SaveChanges();
-                _cache.Remove("categories");
+                _cache.Remove("groups");
 
                 return entity.Id;
             }
         }
-
-        public IEnumerable<GroupDto> GetCategories()
+        public IEnumerable<GroupDto> GetGroups()
         {
             using (_context)
             {
-                if (_cache.TryGetValue("categories", out List<GroupDto> categories))
-                    return categories;
+                if (_cache.TryGetValue("groups", out List<GroupDto> groups))
+                    return groups;
 
-                categories = _context.Groups.Select(x => _mapper.Map<GroupDto>(x)).ToList();
-                _cache.Set("categories", categories, TimeSpan.FromMinutes(30));
+                groups = _context.Groups.Select(x => _mapper.Map<GroupDto>(x)).ToList();
+                _cache.Set("categories", groups, TimeSpan.FromMinutes(30));
 
-                return categories;
+                return groups;
             }
         }
     }

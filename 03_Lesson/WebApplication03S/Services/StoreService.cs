@@ -20,7 +20,7 @@ namespace WebApplication03S.Services
             _cache = cache;
         }
 
-        public int AddStorage(StoreDto store)
+        public int AddStore(StoreDto store)
         {
             using (_context)
             {
@@ -34,7 +34,7 @@ namespace WebApplication03S.Services
             }
         }
 
-        public IEnumerable<StoreDto> GetStorages()
+        public IEnumerable<StoreDto> GetStores()
         {
             using (_context)
             {

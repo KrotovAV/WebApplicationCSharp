@@ -4,7 +4,7 @@ namespace WebApplication03S.Abstraction
 {
     public interface IGroupService
     {
-        IEnumerable<GroupDto> GetCategories();
-        int AddCategory(GroupDto category);
+        IEnumerable<GroupDto> GetGroups();
+        int AddGroup(GroupDto group);
     }
 }
