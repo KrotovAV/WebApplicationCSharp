@@ -44,7 +44,7 @@ namespace WebApplication03HW2
             builder.Services.AddSingleton<IStoreService, StoreService>();
             //03S--------------
 
-            builder.Services.AddSingleton<IProductRepository,ProductRepository>();
+            builder.Services.AddSingleton<IStoreRepository,StoreRepository>();
 
             var confBuilder = new ConfigurationBuilder();
             confBuilder.SetBasePath(Directory.GetCurrentDirectory());
@@ -53,7 +53,7 @@ namespace WebApplication03HW2
 
             builder.Host.ConfigureContainer<ContainerBuilder>(contaierBuilder =>
             {
-                contaierBuilder.RegisterType<ProductRepository>().As<IProductRepository>();
+                contaierBuilder.RegisterType<StoreRepository>().As<IStoreRepository>();
             });
 
             var app = builder.Build();

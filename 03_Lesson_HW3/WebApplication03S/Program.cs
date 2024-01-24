@@ -4,11 +4,11 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using WebApplication03HW3.Abstraction;
+using WebApplication03HW3.Mapper;
 using WebApplication03HW3.Models;
-using WebApplication03HW3.Mutatin;
-using WebApplication03HW3.Query;
+
 using WebApplication03HW3.Repo;
-using WebApplication03HW3.Services;
+
 
 namespace WebApplication03HW3
 {
@@ -24,27 +24,18 @@ namespace WebApplication03HW3
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddAutoMapper(typeof(MappingProFile));
+            builder.Services.AddAutoMapper(typeof(MapperProfile));
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
             builder.Configuration.GetConnectionString("Connection");
 
             builder.Services.AddMemoryCache();
             //builder.Services.AddMemoryCache(o => o.TrackStatistics = true);
-            //03s------------------
-            builder.Services
-                .AddGraphQLServer()
-                .AddQueryType<MySimpleQuery>()
-                .AddMutationType<MySimpleMutation>();
 
             builder.Services.AddSingleton<DBContext>();
 
-            //builder.Services.AddSingleton<IProductService, ProductService>();
-            //builder.Services.AddSingleton<IGroupService, GroupService>();
-            builder.Services.AddSingleton<IStoreService, StoreService>();
-            //03S--------------
             builder.Services.AddSingleton<IProdInStoreRepository, ProdInStoreRepository>();
-            //builder.Services.AddSingleton<IProductRepository,ProductRepository>();
+   
 
             var confBuilder = new ConfigurationBuilder();
             confBuilder.SetBasePath(Directory.GetCurrentDirectory());
@@ -53,7 +44,7 @@ namespace WebApplication03HW3
 
             builder.Host.ConfigureContainer<ContainerBuilder>(contaierBuilder =>
             {
-                contaierBuilder.RegisterType<ProductRepository>().As<IProductRepository>();
+                contaierBuilder.RegisterType<ProdInStoreRepository>().As<IProdInStoreRepository>();
             });
 
             var app = builder.Build();
@@ -64,23 +55,12 @@ namespace WebApplication03HW3
                 app.UseSwaggerUI();
             }
 
-            //var staticFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles");
-            //if (!Directory.Exists(staticFilesPath))
-            //{
-            //    Directory.CreateDirectory(staticFilesPath);
-            //}
-
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    FileProvider = new PhysicalFileProvider(staticFilesPath),
-            //    RequestPath = "/static"
-            //});
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
-            app.MapGraphQL();
+            //app.MapGraphQL();
             app.MapControllers();
 
             app.Run();

@@ -8,8 +8,9 @@
             using HttpResponseMessage responce = await 
                 client.GetAsync($"https://localhost:7210/Product/check_product?id={id.ToString()}");
             responce.EnsureSuccessStatusCode();
-
+            
             string responceBody = await responce.Content.ReadAsStringAsync();
+
             if (responceBody == "true")
             {
                 return true;

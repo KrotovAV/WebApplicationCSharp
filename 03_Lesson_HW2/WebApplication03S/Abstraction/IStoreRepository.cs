@@ -2,7 +2,7 @@
 
 namespace WebApplication03HW2.Abstraction
 {
-    public interface IProductRepository
+    public interface IStoreRepository
     {
         //public IEnumerable<GroupDto> GetGroups();
         //public int AddGroup(GroupDto group);

@@ -7,12 +7,14 @@ namespace WebApplication03HW3.Stores
         readonly HttpClient client = new HttpClient();
         public async Task<bool> Exists(int id)
         {
+            //https://localhost:7220/Store/check_stores?id
             using HttpResponseMessage responce = await 
-                client.GetAsync($"https://localhost:7210/Product/check_stores?id={id.ToString()}");
+                client.GetAsync($"https://localhost:7220/Store/check_stores?id={id.ToString()}");
             responce.EnsureSuccessStatusCode();
 
             string responceBody = await responce.Content.ReadAsStringAsync();
-            if(responceBody == "true")
+
+            if (responceBody == "true")
             {
                 return true;
             }

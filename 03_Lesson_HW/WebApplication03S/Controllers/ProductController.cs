@@ -47,7 +47,7 @@ namespace WebApplication03HW.Controllers
         }
 
         [HttpGet("check_product")]
-        public IActionResult CheckStore(int id)
+        public ActionResult<bool> CheckStore(int id)
         {
 
             var res = _productRepository.CheckProduct(id);

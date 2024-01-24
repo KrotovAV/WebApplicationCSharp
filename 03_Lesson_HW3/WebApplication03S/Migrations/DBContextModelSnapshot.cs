@@ -41,23 +41,6 @@ namespace WebApplication03HW3.Migrations
 
                     b.ToTable("ProdsInStores", (string)null);
                 });
-
-            modelBuilder.Entity("WebApplication03HW3.Models.Store", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Stores");
-                });
 #pragma warning restore 612, 618
         }
     }

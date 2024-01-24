@@ -8,7 +8,7 @@ namespace WebApplication03HW3.Mapper
     {
         public MapperProfile()
         {
-            CreateMap<Store, StoreDto>().ReverseMap();
+            //CreateMap<Store, StoreDto>().ReverseMap();
             CreateMap <ProdInStore, ProdInStoreDto>().ReverseMap();
         }
     }

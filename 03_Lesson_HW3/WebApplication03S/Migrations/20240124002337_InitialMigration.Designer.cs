@@ -10,7 +10,7 @@ using WebApplication03HW3.Models;
 namespace WebApplication03HW3.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20240123174202_InitialMigration")]
+    [Migration("20240124002337_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -43,23 +43,6 @@ namespace WebApplication03HW3.Migrations
                         .HasName("ID");
 
                     b.ToTable("ProdsInStores", (string)null);
-                });
-
-            modelBuilder.Entity("WebApplication03HW3.Models.Store", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Stores");
                 });
 #pragma warning restore 612, 618
         }

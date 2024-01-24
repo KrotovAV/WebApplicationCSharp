@@ -60,7 +60,22 @@ namespace WebApplication03HW3.Repo
 
                 context.ProdInStores.Remove(entityRecord);
                 context.SaveChanges();
-                _cache.Remove("stores");
+                _cache.Remove("prodInStores");
+                return true;
+            }
+        }
+
+        public bool OrderProdFromStore(int prodId, int storeId, int count)
+        {
+            using (var context = new DBContext())
+            {
+                ProdInStore entityRecord = context.ProdInStores.FirstOrDefault(x => x.IdStore == storeId && x.IdProduct == prodId)!;
+                if (entityRecord == null)
+                    return false;
+
+                entityRecord.Count = entityRecord.Count - count;
+                context.SaveChanges();
+                _cache.Remove("prodInStores");
                 return true;
             }
         }

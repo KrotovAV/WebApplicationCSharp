@@ -31,7 +31,6 @@ namespace WebApplication03HW
 
             builder.Services.AddMemoryCache();
 
-            //03s------------------
             builder.Services
                 .AddGraphQLServer()
                 .AddQueryType<MySimpleQuery>()
@@ -41,8 +40,6 @@ namespace WebApplication03HW
 
             builder.Services.AddSingleton<IProductService, ProductService>();
             builder.Services.AddSingleton<IGroupService, GroupService>();
-
-            //03S--------------
 
             builder.Services.AddSingleton<IProductRepository,ProductRepository>();
 
